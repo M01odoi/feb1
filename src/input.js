@@ -13,7 +13,7 @@ onChange = (event) =>{
 
   render() {
     return (
-      <div>
+      <div className={'component'}>
         React Component
         <input name="name" value={this.state.value} onChange={this.onChange}/>
       </div>

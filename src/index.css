@@ -19,3 +19,10 @@ code {
 .app{
   margin: 0;
 }
+.component{
+  display: flex;
+  justify-content: space-between;
+}
+input{
+  margin-left: 10px;
+}

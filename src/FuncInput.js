@@ -7,7 +7,8 @@ export default function FuncInput(props) {
     setValue(event.target.value);
   }
   return (
-    <div>React Functional Component
+    <div  className={'component'}>
+      <div>React Functional Component</div>
       <input name={props.name} value={value} onChange={changeValue}/>
     </div>
   )
