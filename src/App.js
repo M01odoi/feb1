@@ -3,7 +3,7 @@ import FuncInput from './FuncInput';
 
 function App() {
   return (
-    <div>
+    <div className={'app'}>
       <Input name="name" value='text'/>
       <FuncInput name="name" value="value"/>
     </div>
