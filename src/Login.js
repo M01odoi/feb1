@@ -1,6 +1,5 @@
 import React from 'react';
-import Input from './Input';
-import FuncInput from './FuncInput';
+import FuncInput from './components/FuncInput';
 import './login.css'
 
 export default class Login extends React.Component {
@@ -31,8 +30,6 @@ export default class Login extends React.Component {
           /></div>
         <FuncInput type="submit" value="Send to console" className={'button'}/>
       </form>
-
     )
   }
-
 }

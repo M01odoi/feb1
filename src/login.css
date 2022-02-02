@@ -10,7 +10,8 @@ form {
 .button{
     background: #cbcbcb;
     border-radius: 10px;
-    width: 100%;
+    font-size: 18px;
+
 }
 .button:hover{
     background: #989898;
@@ -20,10 +21,7 @@ h1{
     margin: 0;
 }
 
-.component {
-    display: flex;
-    justify-content: space-between;
-}
+
 
 .line {
     width: 120%;
@@ -32,6 +30,7 @@ h1{
 }
 
 input {
+    padding: 2px;
     font-size: 16px;
     width: 200px;
 }
