@@ -32,39 +32,3 @@ code {
     border: 15px solid #494545;
 }
 
-.component {
-    display: flex;
-    justify-content: space-between;
-}
-
-form {
-    height: 70%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: space-between;
-}
-
-input {
-    font-size: 16px;
-    width: 200px;
-}
-
-.line {
-    width: 120%;
-    display: flex;
-    justify-content: space-between;
-}
-
-.button{
-    background: #cbcbcb;
-    border-radius: 10px;
-    width: 100%;
-}
-.button:hover{
-    background: #989898;
-}
-h1{
-    padding: 0;
-    margin: 0;
-}
