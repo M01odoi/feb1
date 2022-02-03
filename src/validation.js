@@ -16,7 +16,7 @@ function obj(valid, error, name) {
 let validation = {
   minLength: function (string, field) {
     if (string.length < 4)
-      return obj(false, 'Min length for this field 4 letters', field);
+      return obj(false, `Min length for ${field} field 4 letters`, field);
     else
       return obj(true, '', field);
 
@@ -24,7 +24,7 @@ let validation = {
   maxLength: function (string, field) {
     if (string.length < 30) return obj(true, '', field)
     else
-      return obj(false, 'Max length for this field 30 letters', field);
+      return obj(false, `Max length for ${field} field 30 letters`, field);
   },
   isEmail: function (string, field) {
     if (/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(string))
