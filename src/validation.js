@@ -14,21 +14,23 @@ function obj(valid, error, name) {
 }
 
 let validation = {
-  minLength: function (string, field) {
-    if (string.length < 4)
+  minLength: function (value, field) {
+    if (value?.length < 4)
       return obj(false, `Min length for ${field} field 4 letters`, field);
     else
       return obj(true, '', field);
 
   },
-  maxLength: function (string, field) {
-    if (string.length < 30) return obj(true, '', field)
+  maxLength: function (value, field) {
+    if (value?.length < 30) return obj(true, '', field)
     else
       return obj(false, `Max length for ${field} field 30 letters`, field);
   },
-  isEmail: function (string, field) {
-    if (/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(string))
+  isEmail: function (value, field) {
+    const emailRegex = /^(([^<>()\[\]\.,;:\s@\"]+(\.[^<>()\[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i;
+    if (emailRegex.test(value)) {
       return obj(true, '', field)
+    }
     else return obj(false, 'You have entered an invalid email address', field)
   },
   match: function (firstPass, secondPass, field) {
@@ -36,8 +38,8 @@ let validation = {
       return obj(true, '', field);
     return obj(false, 'You have not confirmed your password', field)
   },
-  pass: function (string, field) {
-    if (/.*(?=.*\d)(?=.*[A-Z]).*/.test(string))
+  pass: function (value, field) {
+    if (/.*(?=.*\d)(?=.*[A-Z]).*/.test(value))
       return obj(true, '', field)
     else return obj(false, 'You have entered an invalid password', field)
   }

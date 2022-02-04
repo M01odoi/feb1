@@ -21,7 +21,7 @@ function App() {
 <div className={'app'}>
       <Routes>
         <Route path={login} element={<Login/>}/>
-        <Route path={signup} element={<Signup name='Alex' email="alex@gmail.com" password='qWe1' confpass = 'qWe1'/>}/>
+        <Route path={signup} element={<Signup/>}/>
         <Route path={home} element={<Home/>}/>
       </Routes>
 </div>

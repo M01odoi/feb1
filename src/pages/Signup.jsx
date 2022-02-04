@@ -2,14 +2,15 @@ import React, { useEffect, useState } from 'react';
 import FuncInput from '../components/FuncInput';
 import validation from '../validation';
 
+
 const defaultValid = { name: [], email: [], password: [], confpass: [] }
 export default function Signup(props) {
   const [validate, setValidate] = useState(defaultValid);
   const [sign, setSign] = useState({
-    name: props.name,
-    email: props.email,
-    password: props.password,
-    confpass: props.confpass
+    name: props.name||'',
+    email: props.email||'',
+    password: props.password||'',
+    confpass: props.confpass||''
   })
 
   const validateFunc = ({ name, email, password, confpass }) => {
@@ -23,7 +24,7 @@ export default function Signup(props) {
       ], confpass: [validation.match(password, confpass, 'confpass')]
     });
   }
-  const submitOrNot = (validate) => {
+  const isValue = (validate) => {
     let submit = false;
     for (const validateKey in validate) {
       if (validate[validateKey].filter((error) => !!error.error).length)
@@ -31,16 +32,17 @@ export default function Signup(props) {
     }
     return submit;
   }
-  const submit = (e) => {
-    e.preventDefault();
-    validateFunc({ ...sign });
-    if (submitOrNot(validate)) {
-      console.log('111111111111111111111111111');
-    } else {
+  useEffect(() => {
+    if(!isValue(validate)&&sign.name){
       console.log('Name: ' + sign.name + '\nEmail: ' + sign.email
         + '\nPassword: ' + sign.password + '\nConfirm password: ' + sign.confpass);
       setSign({ name: '', email: '', password: '', confpass: '' });
     }
+  },[validate]);
+
+  const validateAndSubmit = (e) => {
+    e.preventDefault();
+    validateFunc({ ...sign });
   }
 
   const renderErrors = (field) => {
@@ -51,7 +53,8 @@ export default function Signup(props) {
   }
   return (
     <div className="form">
-      <form onSubmit={submit}>
+      <form onSubmit={validateAndSubmit}>
+        <h1>Sign up</h1>
         <FuncInput name="Your name" value={sign.name}
                    onChange={event => setSign({ ...sign, name: event.target.value })}/>
         {renderErrors(validate.name)}
@@ -65,7 +68,7 @@ export default function Signup(props) {
                    onChange={event => setSign({ ...sign, confpass: event.target.value })}/>
         {renderErrors(validate.confpass)}
 
-        <input type="submit"  value="Send to console" className={'button'}/>
+        <FuncInput type="submit" value="Send to console" className={'button'}/>
       </form>
     </div>
   )

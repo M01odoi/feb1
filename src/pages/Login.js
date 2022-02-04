@@ -1,18 +1,23 @@
 import React from 'react';
 import FuncInput from '../components/FuncInput';
+import validation from '../validation';
+import api from '../api/api';
 import '../login.css'
+
 
 export default class Login extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      login: this.props.login,
-      password: this.props.password
+      login: this.props.login || '',
+      password: this.props.password || ''
     }
   }
 
   submit = (e) => {
     e.preventDefault();
+
+    api(this.state);
     console.log('Login: ' + this.state.login + '\nPassword: ' + this.state.password);
     this.setState({ login: '', password: '' })
   }
