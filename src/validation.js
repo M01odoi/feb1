@@ -29,9 +29,15 @@ let validation = {
   isEmail: function (value, field) {
     const emailRegex = /^(([^<>()\[\]\.,;:\s@\"]+(\.[^<>()\[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i;
     if (emailRegex.test(value)) {
+      return obj(true, '', field);
+    } else return obj(false, 'You have entered an invalid email address', field);
+  },
+  isEmailUnique: function (value, field) {
+    if (JSON.parse(localStorage.getItem(value))) {
+      return obj(false, 'This email address is already registered', field);
+    } else {
       return obj(true, '', field)
     }
-    else return obj(false, 'You have entered an invalid email address', field)
   },
   match: function (firstPass, secondPass, field) {
     if (firstPass === secondPass)

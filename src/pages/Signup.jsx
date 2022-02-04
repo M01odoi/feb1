@@ -1,6 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import FuncInput from '../components/FuncInput';
 import validation from '../validation';
+import api from '../api/api';
+import { useNavigate } from 'react-router-dom';
+import { login } from '../routes';
 
 
 const defaultValid = { name: [], email: [], password: [], confpass: [] }
@@ -11,17 +14,19 @@ export default function Signup(props) {
     email: props.email||'',
     password: props.password||'',
     confpass: props.confpass||''
-  })
+  });
+  const navigate = useNavigate();
 
   const validateFunc = ({ name, email, password, confpass }) => {
     setValidate({
       name: [validation.minLength(name, 'name'), validation.maxLength(name, 'name')],
-      email: [validation.maxLength(email, 'email'), validation.isEmail(email, 'email')
+      email: [validation.maxLength(email, 'email'), validation.isEmail(email, 'email'),
+        validation.isEmailUnique(email,'email')
       ], password: [
         validation.minLength(password, 'password'),
         validation.maxLength(password, 'password'),
         validation.pass(password, 'password')
-      ], confpass: [validation.match(password, confpass, 'confpass')]
+      ], confpass: [validation.match(password, confpass, 'confpass')],
     });
   }
   const isValue = (validate) => {
@@ -37,6 +42,8 @@ export default function Signup(props) {
       console.log('Name: ' + sign.name + '\nEmail: ' + sign.email
         + '\nPassword: ' + sign.password + '\nConfirm password: ' + sign.confpass);
       setSign({ name: '', email: '', password: '', confpass: '' });
+      api(sign);
+      navigate(login);
     }
   },[validate]);
 
@@ -68,7 +75,7 @@ export default function Signup(props) {
                    onChange={event => setSign({ ...sign, confpass: event.target.value })}/>
         {renderErrors(validate.confpass)}
 
-        <FuncInput type="submit" value="Send to console" className={'button'}/>
+        <button className={'button'}>Send to console</button>
       </form>
     </div>
   )

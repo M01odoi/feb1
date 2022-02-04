@@ -1,12 +1,25 @@
 import Signup from '../pages/Signup';
 import Login from '../pages/Login';
 
-const save = ()=>{
-  console.log('api works')
-}
+export default function api(sign, auth, currentUser) {
 
-export default function api() {
+  const save = (sign) => {
+      localStorage.setItem(sign.email, JSON.stringify({ login: sign.email, password: sign.password, name: sign.name }))
+  }
+  const signIn = (sign) => {
+    const localValues = JSON.parse(localStorage.getItem(sign.login));
+    if (localValues && sign.password === localValues.password) {
+      auth(true);
+      currentUser(JSON.parse(localStorage.getItem(sign.login)).login);
+    } else {
+      console.log('Password dont correct');
+    }
+  }
+
+  const value = Object.keys(sign).length > 2 ? save : signIn;
+
   const saveToLocalStorage = new Promise((resolve, reject) => {
-    setTimeout(save,3000);
+    setTimeout(value, 3000, sign)
   })
+
 }
