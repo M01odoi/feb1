@@ -1,4 +1,7 @@
 import './dashboard.css';
+import FormBuilder from '../../components/FormBuilder';
+import React from 'react';
+import {field} from './fields';
 
 const Dashboard = (props) => {
   const renderUsers = () => {
@@ -14,7 +17,8 @@ const Dashboard = (props) => {
   }
   return (
     <>
-      <h1>DAsh</h1>
+      <h1>Board of all accounts</h1>
+      <div className='structure'>
       <table>
         <thead>
         <tr>
@@ -40,6 +44,11 @@ const Dashboard = (props) => {
           </tr>
         )}</tbody>
       </table>
+      </div>
+      <div>
+        <FormBuilder fields={field} />
+
+      </div>
     </>
   )
 }

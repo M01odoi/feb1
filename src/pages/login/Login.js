@@ -3,10 +3,11 @@ import FuncInput from '../../components/FuncInput';
 import './login.css'
 import { useNavigate } from 'react-router-dom';
 import { home } from '../../routes';
+import FormBuilder from '../../components/FormBuilder';
 
 const Login = (props) => {
-  const [login, setLogin] = useState(props.login || '');
-  const [password, setPassword] = useState(props.password || '');
+  const [login, setLogin] = useState(props.login || 'alex@gmail.com');
+  const [password, setPassword] = useState(props.password || '1q2w3E');
   const [validate, setValidate] = useState(null);
   const navigate = useNavigate();
   const submit = (e) => {
@@ -30,6 +31,7 @@ const Login = (props) => {
 
   return (
     <div className="form">
+
       <form onSubmit={submit}>
         <h1>Sign in</h1>
         <FuncInput name="Login:" type="email" value={login}

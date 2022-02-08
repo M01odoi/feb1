@@ -25,7 +25,7 @@ export default function Signup(props) {
       ], password: [
         validation.minLength(password, 'password'),
         validation.maxLength(password, 'password'),
-        validation.pass(password, 'password')
+        validation.password(password, 'password')
       ], confpass: [validation.match(password, confpass, 'confpass')],
     });
   }

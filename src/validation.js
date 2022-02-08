@@ -44,7 +44,7 @@ let validation = {
       return obj(true, '', field);
     return obj(false, 'You have not confirmed your password', field)
   },
-  pass: function (value, field) {
+  password: function (value, field) {
     if (/.*(?=.*\d)(?=.*[A-Z]).*/.test(value))
       return obj(true, '', field)
     else return obj(false, 'You have entered an invalid password', field)
