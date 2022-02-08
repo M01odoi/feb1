@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { home, login, signup } from '../routes';
-import '../header.css';
+import { home, login, signup } from '../../routes';
+import './header.css';
 
 const Header = ({ auth, logout }) => {
   return (

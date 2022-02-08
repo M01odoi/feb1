@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import FuncInput from '../components/FuncInput';
 import validation from '../validation';
-import api from '../api/api';
 import { useNavigate } from 'react-router-dom';
 import { login } from '../routes';
 
 
 const defaultValid = { name: [], email: [], password: [], confpass: [] }
+
 export default function Signup(props) {
   const [validate, setValidate] = useState(defaultValid);
   const [sign, setSign] = useState({
@@ -42,8 +42,10 @@ export default function Signup(props) {
       console.log('Name: ' + sign.name + '\nEmail: ' + sign.email
         + '\nPassword: ' + sign.password + '\nConfirm password: ' + sign.confpass);
       setSign({ name: '', email: '', password: '', confpass: '' });
-      api(sign);
-      navigate(login);
+      props.api.signUp(sign).then((user)=>{
+        console.log(user);
+        navigate(login);
+      });
     }
   },[validate]);
 

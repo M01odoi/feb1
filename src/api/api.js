@@ -1,25 +1,26 @@
-import Signup from '../pages/Signup';
-import Login from '../pages/Login';
+export default function api( setAuth, setCurrentUser) {
+  const promiseWrap = (callback) => new Promise((res, rej) => {
+    setTimeout(() => {
+      res(callback());
+    }, 3000)
+  });
+  const signUp = (sign) => {
+    return promiseWrap(()=>{
+      localStorage.setItem(sign.email, JSON.stringify({ login: sign.email, password: sign.password, name: sign.name }));
+      return sign;
+    })
 
-export default function api(sign, auth, currentUser) {
-
-  const save = (sign) => {
-      localStorage.setItem(sign.email, JSON.stringify({ login: sign.email, password: sign.password, name: sign.name }))
   }
   const signIn = (sign) => {
     const localValues = JSON.parse(localStorage.getItem(sign.login));
     if (localValues && sign.password === localValues.password) {
-      auth(true);
-      currentUser(JSON.parse(localStorage.getItem(sign.login)).login);
+      setAuth(true);
+      setCurrentUser(JSON.parse(localStorage.getItem(sign.login)).login);
+      return true;
     } else {
-      console.log('Password dont correct');
+      return false;
     }
   }
 
-  const value = Object.keys(sign).length > 2 ? save : signIn;
-
-  const saveToLocalStorage = new Promise((resolve, reject) => {
-    setTimeout(value, 3000, sign)
-  })
-
+  return { signUp, signIn }
 }
