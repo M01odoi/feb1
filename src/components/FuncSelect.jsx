@@ -1,5 +1,3 @@
-
-
 const FuncSelect = (props) => {
      const option = props.options.map((obj,i)=>{
         return <option key={i} value={obj.value} label={obj.label}>{obj.label}</option>

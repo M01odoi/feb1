@@ -1,4 +1,3 @@
-
 export const field = [
   {
     name: 'select option',
@@ -14,10 +13,12 @@ export const field = [
   {
     name: 'code',
     type: 'text',
-    required: true,
     placeholder: 'Confirmation Code',
     validations: {
       onChange: [
+        {
+          name: 'required',
+        },
         {
           name: 'minLength',
           minLength: 6,
@@ -25,13 +26,16 @@ export const field = [
       ],
     },
   },
+
   {
     name: 'newPassword',
     type: 'text',
-    required: true,
     placeholder: 'New password',
     validations: {
       onChange: [
+        {
+          name: 'required',
+        },
         {
           name: 'minLength',
           minLength: 8,
@@ -47,9 +51,21 @@ export const field = [
     type: 'text',
     required: true,
     placeholder: 'Confirm Password',
+    validations: {
+      onChange: [
+        {
+          name: 'match'
+        },
+      ],
+    },
+  },
+  {
+    name: 'checkbox',
+    type: 'checkbox'
   },
   {
     name: 'button',
     type: 'button'
-  }
+  },
+
 ];

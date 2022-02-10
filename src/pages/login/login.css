@@ -9,7 +9,7 @@
 }
 
 form {
-    width: 75%;
+    width: 80%;
     height: 80%;
     display: flex;
     flex-direction: column;
@@ -41,6 +41,7 @@ h1,h2 {
     justify-content: space-between;
 }
 
+
 input {
     padding: 2px;
     font-size: 16px;
@@ -50,7 +51,7 @@ input {
 .span {
     font-weight: bolder;
     color: #a20606;
-    margin-top: -10px;
-    margin-left: 160px;
+    margin-top: 10px;
+    /*margin-left: 160px;*/
     font-size: 10px;
 }

@@ -1,0 +1,31 @@
+.hide{
+/*display: none;*/
+}
+.hide:focus{
+    /*display: contents;*/
+}
+/*.component>.component:focus ~ .hide{*/
+/*    display: none;*/
+/*}*/
+.formBuilder{
+width: 400px;
+text-align: center;
+}
+.component{
+    margin-left: auto;
+}
+.errors{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+.errors .span{
+    text-align: center;
+}
+.formBuilder .component:focus ~ .errors .span{
+    display: unset;
+}
+
+.errors .span{
+    display: none;
+}

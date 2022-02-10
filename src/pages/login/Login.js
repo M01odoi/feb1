@@ -6,7 +6,7 @@ import { home } from '../../routes';
 import FormBuilder from '../../components/FormBuilder';
 
 const Login = (props) => {
-  const [login, setLogin] = useState(props.login || 'alex@gmail.com');
+  const [login, setLogin] = useState(props.login || 'ale@gmail.com');
   const [password, setPassword] = useState(props.password || '1q2w3E');
   const [validate, setValidate] = useState(null);
   const navigate = useNavigate();
@@ -17,7 +17,6 @@ const Login = (props) => {
         password
       }) ? '' : 'Email or Password dont correct'
     );
-    console.log(validate);
     props.api.signIn({ login, password });
 
   }

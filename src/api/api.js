@@ -1,11 +1,11 @@
-export default function api( setAuth, setCurrentUser) {
+export default function api(setAuth, setCurrentUser) {
   const promiseWrap = (callback) => new Promise((res, rej) => {
     setTimeout(() => {
       res(callback());
     }, 3000)
   });
   const signUp = (sign) => {
-    return promiseWrap(()=>{
+    return promiseWrap(() => {
       localStorage.setItem(sign.email, JSON.stringify({ login: sign.email, password: sign.password, name: sign.name }));
       return sign;
     })
