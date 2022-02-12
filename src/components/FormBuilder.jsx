@@ -9,6 +9,7 @@ import './formBuilder.css';
 const FormBuilder = (props) => {
   const [state, setState] = useState([]);
   const [valid, setValid] = useState([]);
+  const [submitClicked, setSubmitClicked] = useState(false);
   useEffect(() => {
     const arr = props.fields.map((obj) => {
       return { name: obj.name, value: '' }
@@ -19,12 +20,11 @@ const FormBuilder = (props) => {
     select: FuncSelect,
     text: FuncInput,
     checkbox: FuncCheckbox,
-    button: FuncButton
   };
   const expectedValues = {
     confirmPassword: state.find((_) => _.name === 'newPassword'),
-      // default: obj.validations.onChange.minLength, // вместо minLength: 8
-      }
+    // default: obj.validations.onChange.minLength, // вместо minLength: 8
+  }
   const validate = () => {
     let resultOfValid = [];
     props.fields.forEach((obj) => {
@@ -34,7 +34,7 @@ const FormBuilder = (props) => {
         for (const prop of obj.validations.onChange) {
           resultOfValid.push(validation[prop.name]({
             value: currentField.value,
-            required: prop.minLength||pass.value,
+            required: prop.minLength || pass.value,
             field: obj.name,
           }));
         }
@@ -43,7 +43,9 @@ const FormBuilder = (props) => {
     setValid(resultOfValid);
   }
 
-  const onChange = (e, name) => {
+  const onChange = (e, name, field) => {
+    if (props.setState)
+     props.setState({ ...props.state, [field]: e.target.value });
     const newValue = state.map((obj) => {
       if (obj.name === name) {
         obj.value = e.target.value;
@@ -58,27 +60,32 @@ const FormBuilder = (props) => {
     }
   }, [state]);
 
-  const renderErrors = (obj,field) => {
+  const renderErrors = (obj, field) => {
     const currentField = state.find((_) => _.name === obj.name);
-    if(currentField&& obj.validations)
-    return field.filter(fieldObj=>currentField.name===fieldObj.name).filter((error) => !!error.error).map((error, index) => (
-        <span key={index} className="span">{error.error}</span>
-      )
-    )
+    if (currentField && obj.validations)
+      return field.filter(fieldObj => currentField.name === fieldObj.name).filter((error) => !!error.error)
+        .map((error, index) => (
+            <span key={index} className={submitClicked ? 'spanDef' : 'span spanErr'}>{error.error}</span>
+          )
+        )
   }
   return (
     <div className="form">
-
-    <form>
-      {props.fields.map((obj, index) => {
-        const Component = fields[obj.type];
-        return <div className='formBuilder'>
-          {/*<span>{obj.name}</span>*/}
-          <Component className='component' key={index} {...obj} onChange={onChange}/>
-          <div className='errors'>{renderErrors(obj,valid)}</div>
-        </div>
-      })}
-    </form>
+      <form>
+        {props.fields.map((obj, index) => {
+          const Component = fields[obj.type];
+          return <div key={index} className="formBuilder">
+            {/*<span>{obj.name}</span>*/}
+            <Component className="component"  {...obj} onChange={onChange}/>
+            <div className="errors">{renderErrors(obj, valid)}</div>
+          </div>
+        })}
+        <FuncButton onClick={(e) => {
+          setSubmitClicked(true);
+         if(!valid.filter((obj)=>obj.valid===false).length)
+          props.submit(e);
+        }} name={'submit'}/>
+      </form>
     </div>
   )
 }

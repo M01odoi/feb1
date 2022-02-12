@@ -41,6 +41,16 @@ let validation = {
       return obj(true, '', field)
     }
   },
+  emailExists: function ({value,password,field}) {
+    console.log({value,password,field});
+    console.log(JSON.parse(localStorage.getItem(value)));
+    const emailExist = JSON.parse(localStorage.getItem(value));
+    if (emailExist && emailExist.password === password){
+      return obj(true, '',field);
+    }else {
+      return obj(false,'Invalid email address or password',field)
+    }
+  },
   match: function ({ value, required, field }) {
     if (value === required)
       return obj(true, '', field);

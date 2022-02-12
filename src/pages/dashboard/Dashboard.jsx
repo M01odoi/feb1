@@ -4,6 +4,10 @@ import React from 'react';
 import {field} from './fields';
 
 const Dashboard = (props) => {
+  const submit = (e) => {
+    e.preventDefault();
+    console.log('Done ',props);
+  }
   const renderUsers = () => {
     const arrOfAccs = [];
     let currentUser;
@@ -46,7 +50,7 @@ const Dashboard = (props) => {
       </table>
       </div>
       <div>
-        <FormBuilder fields={field} />
+        <FormBuilder fields={field} submit={submit} />
 
       </div>
     </>

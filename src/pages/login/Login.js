@@ -1,47 +1,26 @@
-import React, { useEffect, useState } from 'react';
-import FuncInput from '../../components/FuncInput';
+import React, { useState } from 'react';
 import './login.css'
 import { useNavigate } from 'react-router-dom';
 import { home } from '../../routes';
 import FormBuilder from '../../components/FormBuilder';
+import { field } from './fields';
 
 const Login = (props) => {
-  const [login, setLogin] = useState(props.login || 'ale@gmail.com');
-  const [password, setPassword] = useState(props.password || '1q2w3E');
-  const [validate, setValidate] = useState(null);
+  const [paramsForEnter, setParamsForEnter] = useState({ login: '', password: '' });
   const navigate = useNavigate();
+
   const submit = (e) => {
     e.preventDefault();
-    setValidate(props.api.signIn({
-        login,
-        password
-      }) ? '' : 'Email or Password dont correct'
-    );
-    props.api.signIn({ login, password });
-
-  }
-  useEffect(() => {
-    if (validate !== null && validate === '') {
+    if (props.api.signIn(paramsForEnter)) {
+      props.api.signIn(paramsForEnter);
       navigate(home);
-      setLogin('');
-      setPassword('');
     }
-  }, [validate])
+  }
 
-  return (
-    <div className="form">
-
-      <form onSubmit={submit}>
-        <h1>Sign in</h1>
-        <FuncInput name="Login:" type="email" value={login}
-                   onChange={event => setLogin(event.target.value)}/>
-        <FuncInput name="Password:" type="password" value={password}
-                   onChange={event => setPassword(event.target.value)}
-        />
-        {validate && <span className='span'>{validate}</span>}
-        <input type="submit" value="Send to console" className={'button'}/>
-      </form>
-    </div>
+  return (<>
+    <h1>Sign in</h1>
+    <FormBuilder fields={field} submit={submit} state={paramsForEnter} setState={setParamsForEnter}/>
+  </>
   )
 }
 export default Login;

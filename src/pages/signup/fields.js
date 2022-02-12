@@ -1,19 +1,9 @@
 export const field = [
   {
-    name: 'select option',
-    type: 'select',
-    required: true,
-    placeholder: 'Select',
-    options: [
-      { value: 'option1', label: 'Insert' },
-      { value: 'option2', label: 'Update' },
-      { value: 'option3', label: 'Delete' }
-    ],
-  },
-  {
-    name: 'code',
+    name: 'Name',
+    field: 'name',
     type: 'text',
-    placeholder: 'Confirmation Code',
+    placeholder: 'Alexander',
     validations: {
       onChange: [
         {
@@ -26,9 +16,26 @@ export const field = [
       ],
     },
   },
+  {
+    name: 'Email',
+    field: 'email',
+    type: 'text',
+    placeholder: 'example@gmail.com',
+    validations: {
+      onChange: [
+        {
+          name: 'required',
+        },
+        {
+          name: 'isEmail',
+        },
+      ],
+    },
+  },
 
   {
     name: 'newPassword',
+    field: 'password',
     type: 'text',
     placeholder: 'New password',
     validations: {
@@ -48,6 +55,7 @@ export const field = [
   },
   {
     name: 'confirmPassword',
+    field: 'confpass',
     type: 'text',
     required: true,
     placeholder: 'Confirm Password',
@@ -59,10 +67,5 @@ export const field = [
       ],
     },
   },
-  {
-    name: 'checkbox',
-    type: 'checkbox'
-  },
-
 
 ];

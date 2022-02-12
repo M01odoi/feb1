@@ -1,6 +1,7 @@
 export const field = [
   {
-    name: 'code',
+    name: 'Email',
+    field: 'login',
     type: 'text',
     placeholder: 'Your email',
     validations: {
@@ -11,12 +12,16 @@ export const field = [
         {
           name: 'isEmail',
         },
+        // {
+        //   name: 'emailExists',
+        // },
       ],
     },
   },
 
   {
     name: 'newPassword',
+    field: 'password',
     type: 'text',
     placeholder: 'New password',
     validations: {
@@ -31,12 +36,10 @@ export const field = [
         {
           name: 'password',
         },
+
       ],
     },
   },
-  {
-    name: 'button',
-    type: 'button'
-  },
+
 
 ];

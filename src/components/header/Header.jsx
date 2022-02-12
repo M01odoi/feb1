@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { home, login, signup } from '../../routes';
+import { dashboard, home, login, signup, todolist } from '../../routes';
 import './header.css';
 
 const Header = ({ auth, logout }) => {
@@ -14,7 +14,10 @@ const Header = ({ auth, logout }) => {
           </li>
           {auth ? <>
             <li>
-              <Link to="/dash">dash</Link>
+              <Link to={dashboard}>dash</Link>
+            </li>
+            <li>
+              <Link to={todolist}>ToDoList</Link>
             </li>
             <li>
               <button onClick={logout} >Logout</button>
