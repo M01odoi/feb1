@@ -54,7 +54,6 @@ export default function Signup(props) {
   const validateAndSubmit = (e) => {
     e.preventDefault();
     props.api.signUp(sign).then((user) => {
-      console.log(user);
       navigate(login);
     });
   }

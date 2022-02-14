@@ -2,6 +2,7 @@ import FuncInput from './FuncInput';
 import FuncSelect from './FuncSelect';
 import FuncCheckbox from './FuncCheckbox';
 import FuncButton from './FuncButton';
+import FuncDate from './FuncDate'
 import validation from '../validation';
 import React, { useEffect, useState } from 'react';
 import './formBuilder.css';
@@ -20,6 +21,7 @@ const FormBuilder = (props) => {
     select: FuncSelect,
     text: FuncInput,
     checkbox: FuncCheckbox,
+    date: FuncDate,
   };
   const expectedValues = {
     confirmPassword: state.find((_) => _.name === 'newPassword'),
@@ -34,7 +36,7 @@ const FormBuilder = (props) => {
         for (const prop of obj.validations.onChange) {
           resultOfValid.push(validation[prop.name]({
             value: currentField.value,
-            required: prop.minLength || pass.value,
+            required: prop.minLength || pass?.value,
             field: obj.name,
           }));
         }
@@ -45,7 +47,7 @@ const FormBuilder = (props) => {
 
   const onChange = (e, name, field) => {
     if (props.setState)
-     props.setState({ ...props.state, [field]: e.target.value });
+      props.setState({ ...props.state, [field]: e.target.value });
     const newValue = state.map((obj) => {
       if (obj.name === name) {
         obj.value = e.target.value;
@@ -82,8 +84,8 @@ const FormBuilder = (props) => {
         })}
         <FuncButton onClick={(e) => {
           setSubmitClicked(true);
-         if(!valid.filter((obj)=>obj.valid===false).length)
-          props.submit(e);
+          if (!valid.filter((obj) => obj.valid === false).length)
+            props.submit(e);
         }} name={'submit'}/>
       </form>
     </div>
