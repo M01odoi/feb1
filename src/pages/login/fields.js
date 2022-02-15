@@ -1,6 +1,6 @@
 export const field = [
   {
-    name: 'Email',
+    name: 'login',
     field: 'login',
     type: 'text',
     placeholder: 'Your email',
@@ -20,7 +20,7 @@ export const field = [
   },
 
   {
-    name: 'newPassword',
+    name: 'password',
     field: 'password',
     type: 'text',
     placeholder: 'New password',

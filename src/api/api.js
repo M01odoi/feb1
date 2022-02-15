@@ -7,25 +7,26 @@ export default function api(setAuth, setCurrentUser) {
   const signUp = (sign) => {
     return promiseWrap(() => {
       localStorage.setItem(sign.email,
-        JSON.stringify({ login: sign.email, password: sign.password, name: sign.name, entered: false }));
+        JSON.stringify({ login: sign.email, password: sign.password, name: sign.name,todolist:[], entered: false }));
       return sign;
     })
   }
   const createToDoList = (login) => {
     const currentUser = localStorage.getItem(login);
-    console.log(currentUser);
     if (!currentUser.todolist) {
       localStorage.setItem(currentUser.login, JSON.stringify({ ...JSON.parse(currentUser), todolist: [] }));
-      console.log(localStorage.getItem(currentUser.login));
     }
+    return login;
   }
   const addToList = (login, todo) => {
-    const currentUser = localStorage.getItem(login);
+    const currentUser = JSON.parse(localStorage.getItem(login));
     const todolist = currentUser.todolist;
+    console.log(login,todo,currentUser);
     localStorage.setItem(currentUser.login, JSON.stringify({
       ...JSON.parse(currentUser),
       todolist: [...todolist, todo]
     }));
+    return login;
   }
 
   const signIn = (sign) => {

@@ -1,6 +1,6 @@
 export const field = [
   {
-    name: 'Task',
+    name: 'task',
     field: 'task',
     type: 'text',
     placeholder: 'ex: Finish project',
@@ -14,13 +14,13 @@ export const field = [
   },
 
   {
-    name: 'Where',
+    name: 'where',
     field: 'where',
     type: 'text',
     placeholder: 'ex: In home',
   },
   {
-    name: 'When',
+    name: 'when',
     field: 'when',
     type: 'date',
   },

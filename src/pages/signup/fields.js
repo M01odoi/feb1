@@ -1,6 +1,6 @@
 export const field = [
   {
-    name: 'Name',
+    name: 'name',
     field: 'name',
     type: 'text',
     placeholder: 'Alexander',
@@ -17,7 +17,7 @@ export const field = [
     },
   },
   {
-    name: 'Email',
+    name: 'email',
     field: 'email',
     type: 'text',
     placeholder: 'example@gmail.com',
@@ -34,7 +34,7 @@ export const field = [
   },
 
   {
-    name: 'newPassword',
+    name: 'password',
     field: 'password',
     type: 'text',
     placeholder: 'New password',
@@ -54,16 +54,16 @@ export const field = [
     },
   },
   {
-    name: 'confirmPassword',
+    name: 'confpass',
     field: 'confpass',
     type: 'text',
     required: true,
     placeholder: 'Confirm Password',
     validations: {
       onChange: [
-        {
-          name: 'match'
-        },
+        // {
+        //   name: 'match'
+        // },
       ],
     },
   },

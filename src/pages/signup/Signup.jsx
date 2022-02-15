@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { login } from '../../routes';
-import FormBuilder from '../../components/FormBuilder';
+import FormBuilder from '../../components/formBuilder/FormBuilder';
 import { field } from './fields';
 
 
@@ -51,14 +51,16 @@ export default function Signup(props) {
     }
   }, [validate]);
 
-  const validateAndSubmit = (e) => {
+  const validateAndSubmit = (e,state) => {
     e.preventDefault();
-    props.api.signUp(sign).then((user) => {
+    const user = state.reduce((acc, elem) => ({...acc,[elem.name]:elem.value}),{})
+
+    props.api.signUp(user).then(() => {
       navigate(login);
     });
   }
 
   return (
-    <FormBuilder fields={field} submit={validateAndSubmit} state={sign} setState={setSign}/>
+    <FormBuilder fields={field} submit={validateAndSubmit} />
   )
 }
