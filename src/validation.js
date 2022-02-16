@@ -42,8 +42,6 @@ let validation = {
     }
   },
   emailExists: function ({value,password,field}) {
-    console.log({value,password,field});
-    console.log(JSON.parse(localStorage.getItem(value)));
     const emailExist = JSON.parse(localStorage.getItem(value));
     if (emailExist && emailExist.password === password){
       return obj(true, '',field);

@@ -45,15 +45,14 @@ export default function Signup(props) {
         + '\nPassword: ' + sign.password + '\nConfirm password: ' + sign.confpass);
       setSign({ name: '', email: '', password: '', confpass: '' });
       props.api.signUp(sign).then((user) => {
-        console.log(user);
         navigate(login);
       });
     }
   }, [validate]);
 
-  const validateAndSubmit = (e,state) => {
+  const validateAndSubmit = (e, state) => {
     e.preventDefault();
-    const user = state.reduce((acc, elem) => ({...acc,[elem.name]:elem.value}),{})
+    const user = state.reduce((acc, elem) => ({ ...acc, [elem.name]: elem.value }), {})
 
     props.api.signUp(user).then(() => {
       navigate(login);
@@ -61,6 +60,9 @@ export default function Signup(props) {
   }
 
   return (
-    <FormBuilder fields={field} submit={validateAndSubmit} />
+    <div className='form'>
+      <h1>Sign up</h1>
+      <FormBuilder fields={field} submit={validateAndSubmit}/>
+    </div>
   )
 }

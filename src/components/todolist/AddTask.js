@@ -7,18 +7,16 @@ import Modal from './Modal';
 
 const AddTask = (props) => {
   const [todoList, setTodoList] = useContext(ToDoContext);
-  const [task, setTask] = useState({ task: '', where: '', when: '' });
+  // const [task, setTask] = useState({ task: '', where: '', when: '' });
   const submit = (e,state) => {
     e.preventDefault();
-    const user = state.reduce((acc, elem) => ({...acc,[elem.name]:elem.value}),{})
-    console.log(user);
+    const todo = state.reduce((acc, elem) => ({...acc,[elem.name]:elem.value}),{})
     props.setActive(false);
-    setTodoList([ ...todoList, user ]);
-    // props.api.addToList()
+    setTodoList([...todoList,todo ]);
   }
-  useEffect(() => {
-    console.log([...todoList,task]);
-  }, [task])
+  // useEffect(() => {
+  //   console.log([...todoList,task]);
+  // }, [task])
   return (<>
       <button onClick={props.onClick}>Add Task</button>
       <Modal active={props.active} setActive={props.setActive}>

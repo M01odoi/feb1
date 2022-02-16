@@ -11,17 +11,18 @@ const Login = (props) => {
 
   const submit = (e, state) => {
     e.preventDefault();
-    const user = state.reduce((acc, elem) => ({...acc,[elem.name]:elem.value}),{})
+    const user = state.reduce((acc, elem) => ({ ...acc, [elem.name]: elem.value }), {})
     if (props.api.signIn(user)) {
       props.api.signIn(user);
       navigate(home);
     }
-    console.log(user);
   }
 
   return (<>
+      <div className='form'>
       <h1>Sign in</h1>
-      <FormBuilder fields={field} submit={submit}/>
+        <FormBuilder fields={field} submit={submit}/>
+      </div>
     </>
   )
 }

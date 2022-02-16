@@ -11,20 +11,26 @@ export default function api(setAuth, setCurrentUser) {
       return sign;
     })
   }
+  const getCurrentUser = () =>{
+    const currentUser = localStorage.getItem('').login;
+    return currentUser;
+  }
   const createToDoList = (login) => {
     const currentUser = localStorage.getItem(login);
     if (!currentUser.todolist) {
-      localStorage.setItem(currentUser.login, JSON.stringify({ ...JSON.parse(currentUser), todolist: [] }));
+      localStorage.setItem(currentUser.login,  JSON.stringify({ ...JSON.parse(currentUser),todolist: [] }));
     }
     return login;
   }
-  const addToList = (login, todo) => {
-    const currentUser = JSON.parse(localStorage.getItem(login));
-    const todolist = currentUser.todolist;
-    console.log(login,todo,currentUser);
+  const saveToLocalStorToDoList = (login, todo) => {
+    let currentUser ={}
+    try {
+      currentUser = JSON.parse(localStorage.getItem(login));
+    } catch {}
+    const todolist = currentUser.todolist||[];
     localStorage.setItem(currentUser.login, JSON.stringify({
-      ...JSON.parse(currentUser),
-      todolist: [...todolist, todo]
+      ...currentUser,
+      todolist: todo
     }));
     return login;
   }
@@ -33,6 +39,7 @@ export default function api(setAuth, setCurrentUser) {
     const localValues = JSON.parse(localStorage.getItem(sign.login));
     if (localValues && sign.password === localValues.password) {
       setAuth(true);
+      // localStorage.setItem('currentUser',)
       // localStorage.setItem(sign.login,
       //   JSON.stringify({...JSON.parse(sign),entered:true}));
       setCurrentUser(JSON.parse(localStorage.getItem(sign.login)).login);
@@ -42,5 +49,5 @@ export default function api(setAuth, setCurrentUser) {
     }
   }
 
-  return { signUp, signIn, createToDoList, addToList }
+  return { signUp, signIn, createToDoList, addToList: saveToLocalStorToDoList }
 }

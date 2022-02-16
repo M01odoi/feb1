@@ -6,7 +6,6 @@ import {field} from './fields';
 const Dashboard = (props) => {
   const submit = (e) => {
     e.preventDefault();
-    console.log('Done ',props);
   }
   const renderUsers = () => {
     const arrOfAccs = [];
@@ -49,7 +48,7 @@ const Dashboard = (props) => {
         )}</tbody>
       </table>
       </div>
-      <div>
+      <div className='form'>
         <FormBuilder fields={field} submit={submit} />
 
       </div>

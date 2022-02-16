@@ -12,7 +12,6 @@ const FormBuilder = (props) => {
   const [valid, setValid] = useState([]);
   const [submitClicked, setSubmitClicked] = useState(false);
   useEffect(() => {
-      console.log('props', props);
       const arr = props.fields.map((obj) => {
         return { name: obj.name, value: '' }
       })
@@ -74,7 +73,7 @@ const FormBuilder = (props) => {
         )
   }
   return (
-    <div className="form">
+    <>
       <form>
         {props.fields.map((obj, index) => {
           const Component = fields[obj.type];
@@ -90,7 +89,7 @@ const FormBuilder = (props) => {
             props.submit(e,state);
         }} name={'submit'}/>
       </form>
-    </div>
+    </>
   )
 }
 
