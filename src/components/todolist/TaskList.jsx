@@ -3,17 +3,14 @@ import { ToDoContext } from '../../api/ToDoContext';
 import FuncCheckbox from '../formBuilder/FuncCheckbox';
 import FuncButton from '../formBuilder/FuncButton';
 import '../../pages/todoList/todolist.css'
+import Task from './Task';
 
 
-const RenderTask = (props) => {
+const TaskList = () => {
   const [todoContext, setTodoContext] = useContext(ToDoContext);
-  const currentUser = JSON.parse(localStorage.getItem(props.currentUser));
-  // useEffect(()=>{
-  //   setTodoContext(todolist[0]);
-  // },todolist)
   const onClickDelete = (e, key) => {
     e.preventDefault();
-      setTodoContext([...todoContext.slice(0,key),...todoContext.slice(key+1,todoContext.length)]);
+    setTodoContext(todoContext.filter((elem,index)=>index!==key));
   }
   return <div>
     {todoContext.length ?
@@ -28,18 +25,10 @@ const RenderTask = (props) => {
       </tr>
       </thead>
       <tbody>
-      {todoContext.map((obj, index) => {
-        return <tr key={index}>
-          <td><FuncCheckbox type="checkbox"/></td>
-          <td>{obj.task}</td>
-          <td>{obj.where}</td>
-          <td>{obj.when}</td>
-          <td><FuncButton name="delete" onClick={(e) => onClickDelete(e, index)}/></td>
-        </tr>
-      })}
+      <Task todoContext={todoContext} onClickDelete={onClickDelete}/>
       </tbody>
     </table> :
       <h2>No more tasks!</h2>}
   </div>;
 }
-export default RenderTask;
+export default TaskList;

@@ -27,7 +27,6 @@ export default function api(setAuth, setCurrentUser) {
     try {
       currentUser = JSON.parse(localStorage.getItem(login));
     } catch {}
-    const todolist = currentUser.todolist||[];
     localStorage.setItem(currentUser.login, JSON.stringify({
       ...currentUser,
       todolist: todo
@@ -42,6 +41,7 @@ export default function api(setAuth, setCurrentUser) {
       // localStorage.setItem('currentUser',)
       // localStorage.setItem(sign.login,
       //   JSON.stringify({...JSON.parse(sign),entered:true}));
+      sessionStorage.setItem('currentUser',sign.login)
       setCurrentUser(JSON.parse(localStorage.getItem(sign.login)).login);
       return true;
     } else {

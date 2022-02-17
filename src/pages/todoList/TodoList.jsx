@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import AddTask from '../../components/todolist/AddTask';
 import { ToDoContext } from '../../api/ToDoContext';
-import RenderTask from '../../components/todolist/RenderTask';
+import TaskList from '../../components/todolist/TaskList';
 
 const TodoList = (props) => {
   props.api.createToDoList(props.currentUser);
@@ -21,7 +21,7 @@ const TodoList = (props) => {
         <AddTask api={props.api} active={modalActive} setActive={setModalActive} onClick={() => {
           setModalActive(true)
         }}/>
-        <RenderTask currentUser={props.currentUser}/>
+        <TaskList/>
         </div>
       </ToDoContext.Provider>
       {/*<div>      {JSON.parse(localStorage.getItem(props.currentUser.login))}</div>*/}

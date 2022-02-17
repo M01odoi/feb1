@@ -11,13 +11,14 @@ import Header from './components/header/Header';
 import AuthHoc from './components/hoc/AuthHoc';
 
 function App() {
-  const [isAuth, setIsAuth] = useState(false);
-  const [currentUser, setCurrentUser] = useState(false);
+  const [currentUser, setCurrentUser] = useState(sessionStorage.getItem('currentUser'));
+  const [isAuth, setIsAuth] = useState(!!currentUser);
   const navigate = useNavigate();
   const api = apiCreator(setIsAuth, setCurrentUser)
   const logout = () => {
     setIsAuth(false);
     setCurrentUser(false);
+    sessionStorage.setItem('currentUser',null);
     navigate(home);
   }
   return (

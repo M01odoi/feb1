@@ -10,13 +10,12 @@ const AddTask = (props) => {
   // const [task, setTask] = useState({ task: '', where: '', when: '' });
   const submit = (e,state) => {
     e.preventDefault();
+    console.log('state',state);
     const todo = state.reduce((acc, elem) => ({...acc,[elem.name]:elem.value}),{})
     props.setActive(false);
     setTodoList([...todoList,todo ]);
   }
-  // useEffect(() => {
-  //   console.log([...todoList,task]);
-  // }, [task])
+
   return (<>
       <button onClick={props.onClick}>Add Task</button>
       <Modal active={props.active} setActive={props.setActive}>
