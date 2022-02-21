@@ -11,10 +11,7 @@ export default function api(setAuth, setCurrentUser) {
       return sign;
     })
   }
-  const getCurrentUser = () =>{
-    const currentUser = localStorage.getItem('').login;
-    return currentUser;
-  }
+
   const createToDoList = (login) => {
     const currentUser = localStorage.getItem(login);
     if (!currentUser.todolist) {

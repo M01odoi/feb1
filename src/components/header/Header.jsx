@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { dashboard, home, login, signup, todolist } from '../../routes';
+import { dashboard, home, login, signup, todolist, weather } from '../../routes';
 import './header.css';
 
 const Header = ({ auth, logout }) => {
@@ -18,6 +18,9 @@ const Header = ({ auth, logout }) => {
             </li>
             <li>
               <Link to={todolist}>ToDoList</Link>
+            </li>
+            <li>
+              <Link to={weather}>Weather</Link>
             </li>
             <li>
               <button onClick={logout} >Logout</button>

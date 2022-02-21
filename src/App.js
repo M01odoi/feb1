@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Route, Routes, useNavigate } from 'react-router-dom';
-import { dashboard, home, login, signup, todolist } from './routes';
+import { dashboard, home, login, signup, todolist, weather } from './routes';
 import apiCreator from './api/api';
 import Login from './pages/login/Login';
 import Signup from './pages/signup/Signup';
@@ -9,6 +9,7 @@ import Dashboard from './pages/dashboard/Dashboard'
 import TodoList from './pages/todoList/TodoList';
 import Header from './components/header/Header';
 import AuthHoc from './components/hoc/AuthHoc';
+import Weather from './pages/weather/Weather';
 
 function App() {
   const [currentUser, setCurrentUser] = useState(sessionStorage.getItem('currentUser'));
@@ -35,6 +36,10 @@ function App() {
           <Route path={todolist}
                  element={<AuthHoc isAuth={isAuth}>
                    <TodoList api={api} currentUser={currentUser}/>
+                 </AuthHoc>}/>
+          <Route path={weather}
+                 element={<AuthHoc isAuth={isAuth}>
+                   <Weather/>
                  </AuthHoc>}/>
           <Route path="*" element={<Home/>}/>
         </Routes>
