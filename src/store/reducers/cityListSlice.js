@@ -9,7 +9,7 @@ const cityListSlice = createSlice({
         // if (obj.name!==)
         state.push(obj.name);
       });
-    }
+    },
   }
 });
 

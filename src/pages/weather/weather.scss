@@ -1,0 +1,43 @@
+.chooseCity {
+  text-align: left;
+  //display: flex;
+  height: 200px;
+  width: 300px;
+
+  form {
+    width: auto;
+    height: 100px;
+    .formBuilder {
+      width: 300px;
+      height: auto;
+    }
+
+    //height: 200px;
+  }
+}
+
+.listWeekWeather {
+  display: flex;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  button{
+    background:#97A5DB;
+  }
+  button:hover{
+    background: rgba(204, 154, 213, 0.71);
+
+  }
+}
+
+.currentField {
+  display: flex;
+  border: 1px black solid;
+  background: #7D88B5;
+  width: 400px;
+}
+
+.weatherInfo {
+  width: 300px;
+}
+.weatherBody{}
