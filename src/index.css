@@ -5,9 +5,8 @@ body {
     sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-    background: #A9B8F5;
+    background: #e4e6ec;
     font-size: 20px;
-
 }
 
 #root {
@@ -16,17 +15,17 @@ body {
     flex-direction: column;
     align-items: center;
 }
+
 .app{
-    width: 60%;
+    width: 80%;
     display: flex;
     justify-content: center;
     flex-direction: column;
     text-align: center;
     align-items: center;
 }
+
 code {
     font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
-
-

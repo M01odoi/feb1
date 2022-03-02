@@ -10,6 +10,7 @@ import TodoList from './pages/todoList/TodoList';
 import Header from './components/header/Header';
 import AuthHoc from './components/hoc/AuthHoc';
 import Weather from './pages/weather/Weather';
+import Footer from './components/footer/Footer';
 
 function App() {
   const [currentUser, setCurrentUser] = useState(sessionStorage.getItem('currentUser'));
@@ -44,6 +45,7 @@ function App() {
           <Route path="*" element={<Home/>}/>
         </Routes>
       </div>
+      <Footer/>
     </>
   );
 }
