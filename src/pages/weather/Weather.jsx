@@ -11,7 +11,7 @@ import convertSecToDateTime from './convertSecToDateTime';
 
 const Weather = () => {
   const [clickedDay, setClickedDay] = useState();
-  const [activeHours, setActiveHours] = useState([]);
+  const [activeHours, setActiveHours] = useState([0, 1, 2, 3, 4]);
   const cityList = useSelector(state => state.cityList);
   const city = useSelector(state => state.weather.city);
   const data = useSelector(state => state.weather.data);
@@ -54,25 +54,31 @@ const Weather = () => {
   const renderListDays = (data) => {
     const arr = data.daily.map((obj, index) => {
       return <li key={index} onClick={() => setClickedDay(convertSecToDateTime(obj.dt).date)}>
-        <button className={clickedDay === convertSecToDateTime(obj.dt).date ? 'active' : null}>
+        <button onClick={setDefaultValueOfActiveHours}
+                className={clickedDay === convertSecToDateTime(obj.dt).date ? 'active' : null}>
           <img src={`http://openweathermap.org/img/wn/${obj.weather[0].icon}@2x.png`} alt="photo"/>
           <h4>{convertSecToDateTime(obj.dt).dateTime}</h4> Temp:{obj.temp.day}°C {obj.weather[0].main}</button>
       </li>
     });
     return arr;
   }
+  const setDefaultValueOfActiveHours = () => {
+    setActiveHours([0, 1, 2, 3, 4]);
+  }
   // setActiveHours(data.hourly.filter(obj=>obj.key<5))
   const renderListHours = (data, day = new Date().getDate()) => {
+    // console.log(data.hourly.filter((obj) => convertSecToDateTime(obj.dt).date === day));
     const arrHours = data.hourly.filter((obj) => convertSecToDateTime(obj.dt).date === day).map((obj, index) => {
-      console.log(obj);
-      return <div key={index}
-                  className={index < 5 ? 'activeHour' : null}>
-        <h5>{convertSecToDateTime(obj.dt).time}</h5>
-        <div>{obj.weather[0].main}</div>
-        <div>Temp: {obj.temp}°</div>
-        <div>Feels like: {obj.feels_like}°</div>
-        <div>Wind: {obj.wind_speed} m/s</div>
-      </div>
+      if (activeHours.includes(index)) {
+        return <div key={index} className={'activeHour'}>
+          <h5>{convertSecToDateTime(obj.dt).time}</h5>
+          <div>{obj.weather[0].main}</div>
+          <div>Temp: {obj.temp}°</div>
+          <div>Feels like: {obj.feels_like}°</div>
+          <div>Wind: {obj.wind_speed} m/s</div>
+        </div>
+      }
+
     });
     // console.log(arrHours);
     const arr = data.daily.filter((obj) => convertSecToDateTime(obj.dt).date === day);
@@ -99,19 +105,22 @@ const Weather = () => {
           </div>
         </div>
         {arrHours.length ? <div className="weatherInfoForHour">
-          <button>Prev</button>
-          {arrHours.filter((obj) => obj.props.className === 'activeHour')}
-          <button onClick={() => nextHourInfo(arrHours)}>Next</button>
+          <button onClick={prevHourInfo}>&lt;-</button>
+          {arrHours}
+          <button onClick={()=>nextHourInfo(arrHours)}>-&gt;</button>
         </div> : null}
       </div>
     </>
   }
+  const prevHourInfo = () => {
+    if (activeHours[0] !== 0) {
+      setActiveHours(activeHours.map((numb) => numb - 1));
+    }
+  }
   const nextHourInfo = (arrHours) => {
-    // arrHours
-    //   // .filter((obj) => obj.props.className === 'activeHour')
-    //   .map((obj, index) => {
-    //     if (index === 5) obj.props.className = 'activeHour';
-    //   }) TODO
+    if (!arrHours[arrHours.length-1]) {
+      setActiveHours(activeHours.map((numb) => numb + 1));
+    }
   }
   return (<div className="weatherBody">
       <h1>Weather</h1>

@@ -1,7 +1,6 @@
-import React from 'react';
-import './home.css'
+import * as React from 'react';
 
-const Home = ({ currentUser }) => {
+const Home = ({ currentUser }:{currentUser?:string}) => {
   return (<>
       <h1>HOME</h1>
       {currentUser && <div>Welcome home, {currentUser}!</div>}

@@ -1,16 +1,17 @@
-import React, { useState } from 'react';
+import * as React from 'react';
+import { useState } from 'react';
 import { Route, Routes, useNavigate } from 'react-router-dom';
 import { dashboard, home, login, signup, todolist, weather } from './routes';
 import apiCreator from './api/api';
 import Login from './pages/login/Login';
 import Signup from './pages/signup/Signup';
-import Home from './pages/home/Home';
+import Home from './pages/home/Home.tsx';
 import Dashboard from './pages/dashboard/Dashboard'
 import TodoList from './pages/todoList/TodoList';
 import Header from './components/header/Header';
 import AuthHoc from './components/hoc/AuthHoc';
 import Weather from './pages/weather/Weather';
-import Footer from './components/footer/Footer';
+import Footer from './components/footer/Footer.tsx';
 
 function App() {
   const [currentUser, setCurrentUser] = useState(sessionStorage.getItem('currentUser'));
@@ -19,7 +20,7 @@ function App() {
   const api = apiCreator(setIsAuth, setCurrentUser)
   const logout = () => {
     setIsAuth(false);
-    setCurrentUser(false);
+    setCurrentUser(null);
     sessionStorage.setItem('currentUser',null);
     navigate(home);
   }
