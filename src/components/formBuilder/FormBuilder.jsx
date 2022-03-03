@@ -1,4 +1,4 @@
-import FuncInput from './FuncInput';
+import FuncInput from './FuncInput.tsx';
 import FuncSelect from './FuncSelect';
 import FuncCheckbox from './FuncCheckbox';
 import FuncButton from './FuncButton';
@@ -79,7 +79,7 @@ const FormBuilder = (props) => {
           const Component = fields[obj.type];
           return <div key={index} className="formBuilder">
             {/*<span>{obj.name}</span>*/}
-            <Component className="component"  {...obj} onChange={onChange}/>
+            <Component className="component" {...obj} onChange={onChange}/>
             <div className="errors">{renderErrors(obj, valid)}</div>
           </div>
         })}

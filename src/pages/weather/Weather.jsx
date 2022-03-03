@@ -96,12 +96,12 @@ const Weather = () => {
             </div>
           </div>
           <div className="weatherInfo">
-            <div>Max temp: {arr[0].temp.max}°C</div>
-            <div>Min temp: {arr[0].temp.min}°C</div>
-            <div>Morning: {arr[0].temp.morn}°C</div>
-            <div>Day: {arr[0].temp.day}°C</div>
-            <div>Evening: {arr[0].temp.eve}°C</div>
-            <div>Night: {arr[0].temp.night}°C</div>
+            <div>Max temp: {arr[0].temp.max}°</div>
+            <div>Min temp: {arr[0].temp.min}°</div>
+            <div>Morning: {arr[0].temp.morn}°</div>
+            <div>Day: {arr[0].temp.day}°</div>
+            <div>Evening: {arr[0].temp.eve}°</div>
+            <div>Night: {arr[0].temp.night}°</div>
           </div>
         </div>
         {arrHours.length ? <div className="weatherInfoForHour">

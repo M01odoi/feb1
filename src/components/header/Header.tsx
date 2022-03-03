@@ -1,9 +1,9 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
-import { dashboard, home, login, signup, todolist, weather } from '../../routes';
+import {Link} from 'react-router-dom';
+import {dashboard, home, login, signup, todolist, weather} from '../../routes';
 import './header.css';
 
-const Header = ({ auth, logout }) => {
+const Header = ({ auth, logout }:{auth:boolean,logout:void}) => {
   return (
     <header>
       <nav className={'nav'}>

@@ -1,4 +1,4 @@
-export const field = [
+export const field : Array<object>= [
   {
     name: 'login',
     field: 'login',
