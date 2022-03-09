@@ -12,7 +12,6 @@ interface IProps {
 }
 
 export default function FuncInput(props: IProps) {
-    console.log(props);
     return (<>
             <span>{props.name}</span>
             <input {...props} onChange={(e) => props.onChange(e, props.name, props.field)}/>

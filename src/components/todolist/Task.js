@@ -1,5 +1,5 @@
-import FuncCheckbox from '../formBuilder/FuncCheckbox';
-import FuncButton from '../formBuilder/FuncButton';
+import FuncCheckbox from '../formBuilder/FuncCheckbox.tsx';
+import FuncButton from '../formBuilder/FuncButton.tsx';
 
 const Task = (props) => {
   return props.todoContext.map((obj, index) => {

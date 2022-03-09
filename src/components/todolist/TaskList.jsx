@@ -1,7 +1,5 @@
-import { useContext, useEffect } from 'react';
+import { useContext } from 'react';
 import { ToDoContext } from '../../api/ToDoContext';
-import FuncCheckbox from '../formBuilder/FuncCheckbox';
-import FuncButton from '../formBuilder/FuncButton';
 import '../../pages/todoList/todolist.css'
 import Task from './Task';
 

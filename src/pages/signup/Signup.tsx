@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import {useNavigate} from 'react-router-dom';
 import {login} from '../../routes';
-import FormBuilder from '../../components/formBuilder/FormBuilder';
+import FormBuilder from '../../components/formBuilder/FormBuilder.tsx';
 import {field} from './fields.ts';
 
 

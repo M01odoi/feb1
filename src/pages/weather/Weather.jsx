@@ -1,4 +1,4 @@
-import FormBuilder from '../../components/formBuilder/FormBuilder';
+import FormBuilder from '../../components/formBuilder/FormBuilder.tsx';
 import weatherApi from '../../api/weatherApi';
 import { setCity, setNewData } from '../../store/reducers/weatherSlice';
 import { useDispatch, useSelector } from 'react-redux';
@@ -8,10 +8,11 @@ import { useEffect, useState } from 'react';
 import './weather.scss';
 import cityToLonLat from '../../api/cityToLonLat';
 import convertSecToDateTime from './convertSecToDateTime';
+import d2d from 'degrees-to-direction';
 
 const Weather = () => {
   const [clickedDay, setClickedDay] = useState();
-  const [activeHours, setActiveHours] = useState([0, 1, 2, 3, 4]);
+  const [activeHours, setActiveHours] = useState([0, 1, 2, 3]);
   const cityList = useSelector(state => state.cityList);
   const city = useSelector(state => state.weather.city);
   const data = useSelector(state => state.weather.data);
@@ -40,7 +41,6 @@ const Weather = () => {
 
     cityToLonLat(state[0].value).then((data) => {
         weatherApi(data.coord.lat, data.coord.lon).then((value) => {
-            console.log(value);
             dispatch(setCity(data))
             dispatch(setNewData(value))
           },
@@ -50,6 +50,7 @@ const Weather = () => {
         console.log(reason);
       });
   }
+  const d2d = require('degrees-to-direction');
 
   const renderListDays = (data) => {
     const arr = data.daily.map((obj, index) => {
@@ -63,11 +64,9 @@ const Weather = () => {
     return arr;
   }
   const setDefaultValueOfActiveHours = () => {
-    setActiveHours([0, 1, 2, 3, 4]);
+    setActiveHours([0, 1, 2, 3]);
   }
-  // setActiveHours(data.hourly.filter(obj=>obj.key<5))
   const renderListHours = (data, day = new Date().getDate()) => {
-    // console.log(data.hourly.filter((obj) => convertSecToDateTime(obj.dt).date === day));
     const arrHours = data.hourly.filter((obj) => convertSecToDateTime(obj.dt).date === day).map((obj, index) => {
       if (activeHours.includes(index)) {
         return <div key={index} className={'activeHour'}>
@@ -76,11 +75,10 @@ const Weather = () => {
           <div>Temp: {obj.temp}°</div>
           <div>Feels like: {obj.feels_like}°</div>
           <div>Wind: {obj.wind_speed} m/s</div>
+          <div>Wind direction: {d2d(obj.wind_deg)} </div>
         </div>
       }
-
     });
-    // console.log(arrHours);
     const arr = data.daily.filter((obj) => convertSecToDateTime(obj.dt).date === day);
     return <>
       <div className="weatherInfoForDayHour">

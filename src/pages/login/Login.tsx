@@ -2,7 +2,7 @@ import React from 'react';
 import './login.css'
 import {useNavigate} from 'react-router-dom';
 import {home} from '../../routes';
-import FormBuilder from '../../components/formBuilder/FormBuilder';
+import FormBuilder from '../../components/formBuilder/FormBuilder.tsx';
 import {field} from './fields.ts';
 
 const Login = (props: object) => {

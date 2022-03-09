@@ -1,5 +1,5 @@
 import './dashboard.css';
-import FormBuilder from '../../components/formBuilder/FormBuilder';
+import FormBuilder from '../../components/formBuilder/FormBuilder.tsx';
 import React from 'react';
 import {field} from './fields';
 
